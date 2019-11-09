@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="UserLocation" representedClassName=".UserLocation" syncable="YES">
+        <attribute name="areaName" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="String"/>
+        <attribute name="region" optional="YES" attributeType="String"/>
+        <attribute name="viewDateTime" optional="YES" attributeType="Date" defaultDateTimeInterval="586250700" usesScalarValueType="NO"/>
+        <attribute name="weatherUrl" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="UserLocation" positionX="-261.74609375" positionY="-260.06640625" width="128" height="148"/>
+    </elements>
+</model>
