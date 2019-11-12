@@ -22,9 +22,6 @@
                                     <constraint firstAttribute="height" constant="60" id="6TJ-WP-H2g"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="9rk-kx-DN4"/>
-                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-BI-ty1">
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
@@ -51,10 +48,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="dcr-Qb-N2U"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="TNv-cS-pn9"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -70,16 +63,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="9BY-jZ-pPx"/>
-                    <connections>
-                        <outlet property="myViewedTableView" destination="b0B-BI-ty1" id="85T-ho-08b"/>
-                        <outlet property="searchBar" destination="CPC-WC-jVe" id="cpY-Rc-mth"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992.79999999999995" y="27.436281859070466"/>
         </scene>
-        <!--Weather-->
+        <!--City Weather-->
         <scene sceneID="CM9-X4-1Kg">
             <objects>
                 <viewController id="mIT-Nf-knw" customClass="CityViewController" customModule="SPWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,7 +153,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AIM-vS-sfo"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Weather" id="LHi-Pk-P3o"/>
+                    <navigationItem key="navigationItem" title="City Weather" id="LHi-Pk-P3o"/>
                     <connections>
                         <outlet property="txtDescription" destination="GwG-TC-gnf" id="6KE-VK-wYv"/>
                         <outlet property="txtHumidity" destination="tXm-jk-kA3" id="0CJ-ag-3Sv"/>
