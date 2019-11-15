@@ -168,8 +168,8 @@
 			children = (
 				E4B3156022EC04080068B31E /* SPWeatherApp */,
 				E4B3155F22EC04080068B31E /* Products */,
-				DBEE1FBB2376B29E00F58F14 /* SPWeatherAppUITests */,
 				DBEE1F742376AF0F00F58F14 /* SPWeatherAppTests */,
+				DBEE1FBB2376B29E00F58F14 /* SPWeatherAppUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -456,9 +456,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SP-Group.SPWeatherAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SPGroupWeather;
+				TEST_TARGET_NAME = SPWeatherApp;
 			};
 			name = Debug;
 		};
@@ -474,9 +475,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SP-Group.SPWeatherAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SPGroupWeather;
+				TEST_TARGET_NAME = SPWeatherApp;
 			};
 			name = Release;
 		};
