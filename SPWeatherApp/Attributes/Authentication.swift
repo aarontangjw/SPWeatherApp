@@ -10,22 +10,17 @@ import Foundation
 
 class Authentication{
     static var sharedInstance = Authentication()
-    
-    var authToken           : String
-    var userId              : String
-    var username            : String
+
     var contentType         : String
     var API_KEY             : String
     var format              : String
     
-    
     init() {
-        self.authToken      = ""
-        self.userId         = ""
-        self.username       = ""
         self.contentType    = "application/json"
-        self.API_KEY        = "00c3bcbc4ac348e49d2131029190811"
         self.format         = "json"
+        
+        //To replace with user's API Secret Key for WorldWeatherOnline.
+        self.API_KEY        = "00c3bcbc4ac348e49d2131029190811"
         
     }
 }

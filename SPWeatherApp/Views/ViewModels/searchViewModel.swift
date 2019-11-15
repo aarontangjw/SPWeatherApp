@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 
 class searchViewModel {
- //   let parameters: [String : AnyObject] = [APIConstants.API_KEY: Globals.sharedInstance.API_KEY as AnyObject , APIConstants.page : currentPage as AnyObject]
     var locations : [Location] = []
     var userLocations: [NSManagedObject] = []
     
@@ -34,21 +33,7 @@ class searchViewModel {
             
             if success {
                  let resultObject = response
-               // if let data = response {
-                 //   print("data: \(resultObject)")
-                
-//                if let jsonData = resultObject.data(using: .utf8)
-//                {
-//                    let decoder = JSONDecoder()
-//
-//                    do {
-//                        let locations = try decoder.decode(Location.self, from: resultObject )
-//                        print(locations)
-//                    } catch {
-//                        print(error.localizedDescription)
-//                    }
 
-                
                  if let value = resultObject as? [String:AnyObject]{
                     if let errorMsg = value["data"] as? NSDictionary{
                         completion (false, locations, error)
@@ -57,7 +42,6 @@ class searchViewModel {
                          if let resultDic = resultArray["result"] as? NSArray{
 
                              for resultArray in resultDic as [AnyObject] {
-                                //var location = Location(dictionary: resultArray)!
                                 var location : Location = Location()
                                 print(resultArray)
 
@@ -98,39 +82,7 @@ class searchViewModel {
         }
     }
     
-    func insertLocation(location : Location) throws {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-
-        let entity =
-            NSEntityDescription.entity(forEntityName: DBConstants.userLocation,
-                                       in: managedContext)!
-        let userLocation = NSManagedObject(entity: entity,
-                                           insertInto: managedContext)
-        
-        userLocation.setValue(location.areaName, forKeyPath: LocationConstant.areaName)
-        userLocation.setValue(location.country, forKeyPath: LocationConstant.country)
-        userLocation.setValue(location.latitude, forKeyPath: LocationConstant.latitude)
-        userLocation.setValue(location.longitude, forKeyPath: LocationConstant.longitude)
-        userLocation.setValue(location.weatherUrl, forKeyPath: LocationConstant.weatherUrl)
-        userLocation.setValue(location.region, forKeyPath: LocationConstant.region)
-
-        do {
-            try managedContext.save()
-            //  people.append(userLocation)
-        } catch let error as NSError {
-            print("Could not save. \(error)")
-        }
-    }
-    
-    
-    
-    func fetchUserLocations() throws  {
+    func getUserLocations() throws  {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -138,14 +90,14 @@ class searchViewModel {
         
         let managedContext = appDelegate.persistentContainer.viewContext
 
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "UserLocation")
+        let getRequest = NSFetchRequest<NSManagedObject>(entityName: "UserLocation")
 
-        fetchRequest.fetchOffset = 0
-        fetchRequest.fetchLimit = 10
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "viewDateTime", ascending: false)]
+        getRequest.fetchOffset = 0
+        getRequest.fetchLimit = 10
+        getRequest.sortDescriptors = [NSSortDescriptor(key: "viewDateTime", ascending: false)]
         
         do {
-            self.userLocations = try managedContext.fetch(fetchRequest)
+            self.userLocations = try managedContext.fetch(getRequest)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -165,6 +117,32 @@ class searchViewModel {
         }
         self.locations.sort(by: {$0.viewDateTime.compare($1.viewDateTime) == .orderedAscending})
     }
- 
+    
+    func insertLocation(location : Location) throws {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+
+        let entity = NSEntityDescription.entity(forEntityName: DBConstants.userLocation, in: managedContext)!
+        let userLocation = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        userLocation.setValue(location.areaName, forKeyPath: LocationConstant.areaName)
+        userLocation.setValue(location.country, forKeyPath: LocationConstant.country)
+        userLocation.setValue(location.latitude, forKeyPath: LocationConstant.latitude)
+        userLocation.setValue(location.longitude, forKeyPath: LocationConstant.longitude)
+        userLocation.setValue(location.weatherUrl, forKeyPath: LocationConstant.weatherUrl)
+        userLocation.setValue(location.region, forKeyPath: LocationConstant.region)
+
+        do {
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
+    }
 }
 

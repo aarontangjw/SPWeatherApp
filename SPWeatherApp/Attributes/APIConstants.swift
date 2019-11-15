@@ -8,41 +8,22 @@
 
 import Foundation
 
-struct Constants {
-    
-}
-
 struct APIConstants {
     static let API_KEY          =   "key"
     static let format           =   "format"
     static let numOfDays        =   "num_of_days"
     static let searchParam      =   "q"
-    static let xauthorization   =   "X-Authorization"
     static let contentType      =   "contentType"
     
 }
-
 
 struct DBConstants {
     static let userLocation = "UserLocation"
 }
 
-struct GeneralConstants {
-    static let noNetworkViewIdentifier = "NoNetworkView"
-    static let noLoginViewIdentifier   = "NoLoginView"
-}
-
 struct ErrorConstant {
     static let tag = 91
 }
-
-struct MessageStrings{
-    
-    static let errorTitle = "Error"
-    static let networkErrorTitle = "Network Error"
-    
-}
-
 
 struct LocationConstant {
     

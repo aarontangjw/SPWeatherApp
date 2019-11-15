@@ -20,18 +20,20 @@ class HomeViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
 
     // MARK:- IBOutlet
-   // @IBOutlet weak var searchBar: UISearchBar!
+    //@IBOutlet weak var searchBar: UISearchBar!
     //@IBOutlet weak var myViewedTableView: UITableView!
+    @IBOutlet weak var mainSearchBar: UISearchBar!
 
+    @IBOutlet weak var mainSearchPageView: UITableView!
+    
     // MARK:- View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showSpinner(onView: self.view)
-        try! self.homeSearchVM.fetchUserLocations()
+        try! self.homeSearchVM.getUserLocations()
         self.removeSpinner()
     }
     
-
     init(viewModel: searchViewModel) {
         self.homeSearchVM = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +48,7 @@ class HomeViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CityViewController,
-            let selectedIndex = myViewedTableView.indexPathForSelectedRow {
+            let selectedIndex = mainSearchPageView.indexPathForSelectedRow {
             try! self.homeSearchVM.insertLocation(location: self.homeSearchVM.locations[selectedIndex.row])
             destination.selectedText = self.homeSearchVM.locations[selectedIndex.row].areaName
         }
@@ -54,21 +56,21 @@ class HomeViewController: UIViewController {
     
     private func setupSearchBar() {
         searchController.searchBar.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false
+        //searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Search any Topic"
         definesPresentationContext = true
-        myViewedTableView.tableHeaderView = searchController.searchBar
+        mainSearchPageView.tableHeaderView = searchController.searchBar
     }
 
     func refreshTable() {
         DispatchQueue.main.async(execute: { () -> Void in
-            self.myViewedTableView.reloadData()
+            self.mainSearchPageView.reloadData()
         })
     }
     
     @objc func reload() {
-        guard let searchText = self.searchBar.text else { return }
+        guard let searchText = self.mainSearchBar.text else { return }
         searchLocation(searchText : searchText)
     }
     
@@ -108,7 +110,7 @@ extension HomeViewController : UITableViewDataSource {
 //MARK:- UITableViewDelegate
 extension HomeViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        myViewedTableView.deselectRow(at: indexPath, animated: true)
+        mainSearchPageView.deselectRow(at: indexPath, animated: true)
     }
 }
 

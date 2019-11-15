@@ -25,7 +25,7 @@ class CityViewController: UIViewController {
         print(selectedText)
         
         self.showSpinner(onView: self.view)
-        fetchCityWeather()
+        getCityWeather()
     }
     
     // to be called during testing
@@ -40,9 +40,8 @@ class CityViewController: UIViewController {
         super.init(coder: aDecoder)
     }
 
-    
-    func fetchCityWeather(){
-        cityVM.fetchWeather(selectedText, 1, { (success, result, error) -> Void in
+    func getCityWeather(){
+        cityVM.getWeather(selectedText, 1, { (success, result, error) -> Void in
             if(success) {
                 self.setupUI()
             } else {
@@ -51,11 +50,10 @@ class CityViewController: UIViewController {
         })
     }
     
-    
     func setupUI(){
         DispatchQueue.main.async(execute: { () -> Void in
-            self.txtHumidity.text = self.cityVM.weather.humidity
-            self.txtTemperature.text = self.cityVM.weather.temp_C
+            self.txtHumidity.text = self.cityVM.weather.humidity + "%"
+            self.txtTemperature.text = self.cityVM.weather.temp_C + "ºC"
             self.txtDescription.text = self.cityVM.weather.weatherDesc
         })
         

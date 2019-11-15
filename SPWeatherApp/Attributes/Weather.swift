@@ -9,8 +9,8 @@
 import Foundation
 
 struct Weather {
-    var observation_time  : String
     var humidity          : String
+    var observation_time  : String
     var temp_C            : String
     var temp_F            : String
     var visibility        : String
@@ -19,8 +19,8 @@ struct Weather {
     var weatherDesc       : String
     
     init(){
-        self.observation_time   = ""
         self.humidity           = ""
+        self.observation_time   = ""
         self.temp_C             = ""
         self.temp_F             = ""
         self.visibility         = ""
@@ -38,14 +38,12 @@ struct Weather {
         
         let wDesc = dictionary["weatherDesc"] as! NSArray
         let wDescDic = wDesc[0] as! NSDictionary
+        
         self.weatherDesc = wDescDic["value"] as! String
-        
-        self.weatherCode = dictionary["weatherCode"] as! String
-        self.visibility = dictionary["visibility"] as! String
-        self.temp_F = dictionary["temp_F"] as! String
-        
         self.humidity = dictionary["humidity"] as! String
         self.temp_C = dictionary["temp_C"] as! String
-        
+        self.temp_F = dictionary["temp_F"] as! String
+        self.weatherCode = dictionary["weatherCode"] as! String
+        self.visibility = dictionary["visibility"] as! String
     }
 }
